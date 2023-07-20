@@ -1,0 +1,28 @@
+th {
+  text-align: left;
+}
+
+td {
+  vertical-align: top;
+  max-width: 400px;
+}
+
+.url {
+  word-wrap: break-word;
+}
+
+.credential-attribute {
+  text-indent: 20px;
+}
+
+.focus {
+  background-color: lightyellow;
+}
+
+td:first-child {
+  min-width: 20px;
+}
+
+.focus td:first-child {
+  border-right: solid 2px black;
+}

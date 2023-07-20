@@ -1,0 +1,12 @@
+/backend/.env
+
+/backend/build
+/frontend/build
+
+/backend/node_modules
+/frontend/node_modules
+
+/backend/yarn-error.log
+/frontend/yarn-error.log
+
+/.idea
