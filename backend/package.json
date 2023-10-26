@@ -5,9 +5,6 @@
   "author": "Anonyome Labs, Inc.",
   "license": "Apache-2.0",
   "type": "module",
-  "engines": {
-    "node": ">=16 <17"
-  },
   "dependencies": {
     "@sudoplatform-labs/sudo-di-cloud-agent": "^0.6.7",
     "dotenv": "^16.0.3",
@@ -32,6 +29,7 @@
   "scripts": {
     "build": "yarn tsc",
     "start": "cd build/src && node server.js",
+    "verify": "yarn audit",
     "lint": "yarn eslint src --ext .ts",
     "lint:fix": "yarn eslint src --ext .ts --fix",
     "clean": "rm -rf build",

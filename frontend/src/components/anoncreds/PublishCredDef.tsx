@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { focusOnStep, renderPointerOnStep } from '../util/exampleFlow';
-import HttpToBackend from '../util/httpToBackend';
+import React, { ReactElement, useState } from 'react';
+import HttpToBackend from '../../HttpToBackend';
+import { focusOnStep, renderPointerOnStep } from '../../util';
 import { ExampleStep } from './PrepareToIssueCredentials';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
 /**
  * A React component for the UI section to publish a credDef (credential definition).
  */
-export const PublishCredDef: React.FC<Props> = (props) => {
+export const PublishCredDef = (props: Props): ReactElement => {
   // the following state is inherited from the over-arching application
   const step = props.step;
   const setStep = props.setStep;
@@ -37,7 +37,7 @@ export const PublishCredDef: React.FC<Props> = (props) => {
     setPublishCredDefStatus('In Progress');
     setStep(ExampleStep.WaitForPublishCredDef);
 
-    const responseData = await HttpToBackend.publishCredDef(schemaId);
+    const responseData = await HttpToBackend.publishAnoncredsCredDef(schemaId);
     setCredDefId(responseData.credDefId);
 
     setPublishCredDefStatus('Done');
@@ -47,28 +47,32 @@ export const PublishCredDef: React.FC<Props> = (props) => {
   return (
     <div id="publishCredDef">
       <table>
-        <tr className={focusOnStep(step, ExampleStep.PublishCredDef)}>
-          <td>{renderPointerOnStep(step, [ExampleStep.PublishCredDef, ExampleStep.WaitForPublishCredDef])}</td>
-          <td>
-            <button
-              type="button"
-              id="publishCredDefBtn"
-              onClick={handleOnClickPublishCredDef}
-              disabled={step !== ExampleStep.PublishCredDef}>
-              Publish CredDef
-            </button>
-          </td>
-          <td>
-            <span id="publishCredDefStatus">{publishCredDefStatus.length > 0 ? `[${publishCredDefStatus}]` : '-'}</span>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>CredDef ID:</td>
-          <td>
-            <span id="credDefId">{credDefId.length > 0 ? credDefId : '-'}</span>
-          </td>
-        </tr>
+        <tbody>
+          <tr className={focusOnStep(step, ExampleStep.PublishCredDef)}>
+            <td>{renderPointerOnStep(step, [ExampleStep.PublishCredDef, ExampleStep.WaitForPublishCredDef])}</td>
+            <td>
+              <button
+                type="button"
+                id="publishCredDefBtn"
+                onClick={handleOnClickPublishCredDef}
+                disabled={step !== ExampleStep.PublishCredDef}>
+                Publish CredDef
+              </button>
+            </td>
+            <td>
+              <span id="publishCredDefStatus">
+                {publishCredDefStatus.length > 0 ? `[${publishCredDefStatus}]` : '-'}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>CredDef ID:</td>
+            <td>
+              <span id="credDefId">{credDefId.length > 0 ? credDefId : '-'}</span>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

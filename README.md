@@ -61,6 +61,8 @@ yarn start
 
 ## How to use this example app
 
-Once the example app is up and running, you will require a wallet app (also known as an Edge Agent) on your mobile device. This is required throughout the example in order to create a connection with the Cloud Agent Service, issue a credential and verify the credential.
+The example app is broken down into multiple example flows. You can select an example flow on the home/landing page.
 
-If you would like to reset the example app to start a fresh connection, you may do so at any time by refreshing the page in your web browser.
+Once the example app is up and running, you will require a wallet app (also known as an Edge Agent) on your mobile device. This is required throughout the example flows in order to create connections with the Cloud Agent Service, issue credentials and verify credentials.
+
+If you would like to reset the state of an example flow, you may do so at any time by refreshing the page in your web browser.

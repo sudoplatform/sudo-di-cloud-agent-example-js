@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { PublishSchema } from './PublishSchema';
+import React, { ReactElement, useState } from 'react';
 import { PublishCredDef } from './PublishCredDef';
+import { PublishSchema } from './PublishSchema';
 
 /**
  * This enum defines a sequence of steps used to guide the user through the example flow of this UI section.
@@ -23,7 +23,7 @@ interface Props {
 /**
  * A React component for the UI section "Prepare to Issue Credentials".
  */
-export const PrepareToIssueCredentials: React.FC<Props> = (props) => {
+export const PrepareToIssueCredentials = (props: Props): ReactElement => {
   // the following state is inherited from the over-arching application
   const step = props.step;
   const setStep = props.setStep;
@@ -36,9 +36,11 @@ export const PrepareToIssueCredentials: React.FC<Props> = (props) => {
   return (
     <div id="prepareToIssueCredentials">
       <table>
-        <tr>
-          <th colSpan={3}>Prepare to Issue Credentials</th>
-        </tr>
+        <tbody>
+          <tr>
+            <th colSpan={3}>Prepare to Issue Credentials</th>
+          </tr>
+        </tbody>
       </table>
       <PublishSchema step={step} setStep={setStep} schemaId={schemaId} setSchemaId={setSchemaId} />
       <br />
