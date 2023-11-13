@@ -134,7 +134,7 @@ export default class CloudAgent {
      * - it is only used here to help you differentiate between connections in your Edge Agent wallet app when
      * you replay this example app.
      */
-    const my_label = `Example Org ${this.generateTimeStamp()}`;
+    const my_label = `TEST Example Org ${this.generateTimeStamp()}`;
 
     // call the SDK
     const connectionApi = new ConnectionApi(this.configuration);
@@ -261,7 +261,7 @@ export default class CloudAgent {
      * The schema name set below is only for demonstrative purposes. A timestamp is not needed in a real application
      * - it is only used here to support replay-ability of this example app.
      */
-    const schema_name = `Registration ${this.generateTimeStamp()}`;
+    const schema_name = `TEST Registration ${this.generateTimeStamp()}`;
 
     /**
      * The version of the schema.
@@ -334,7 +334,7 @@ export default class CloudAgent {
      * The tag set below is only for demonstrative purposes. A timestamp is not needed in a real application
      * - it is only used here to support replay-ability of this example app.
      */
-    const tag = `Registration ${this.generateTimeStamp()}`;
+    const tag = `TEST Registration ${this.generateTimeStamp()}`;
 
     // call the SDK
     const credDefApi = new CredentialDefinitionApi(this.configuration);
@@ -412,6 +412,7 @@ export default class CloudAgent {
         connection_id,
         cred_def_id,
         auto_issue: true,
+        comment: `TEST Registration credential ${this.generateTimeStamp()}`,
         credential_preview: {
           type: 'issue-credential/1.0/credential-preview',
           attributes,
@@ -463,7 +464,7 @@ export default class CloudAgent {
     }
 
     /**
-     * The Issuer DID is used to sign the credential, therefore producing a VC (verifiable credential).
+     * The Issuer DID is used to sign the credential, thus producing a VC (verifiable credential).
      */
     const issuerDid = `did:${issuerDidResult.result.method}:${issuerDidResult.result.did}`;
 
@@ -479,7 +480,7 @@ export default class CloudAgent {
       body: {
         connection_id,
         auto_issue: true,
-        comment: `Resident credential ${this.generateTimeStamp()}`,
+        comment: `TEST Resident credential ${this.generateTimeStamp()}`,
         filter: {
           ld_proof: {
             /**
@@ -772,7 +773,7 @@ export default class CloudAgent {
         connection_id,
         auto_verify: true,
         proof_request: {
-          name: `Proof presentation requested at ${this.generateTimeStamp()}`,
+          name: `TEST Proof request ${this.generateTimeStamp()}`,
           version: '1.0',
           requested_attributes,
           requested_predicates: {},
@@ -824,7 +825,7 @@ export default class CloudAgent {
       body: {
         connection_id,
         auto_verify: true,
-        comment: `Proof presentation requested at ${this.generateTimeStamp()}`,
+        comment: `TEST Proof request ${this.generateTimeStamp()}`,
         presentation_request: {
           dif: {
             options: {

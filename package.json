@@ -1,6 +1,6 @@
 {
   "name": "@sudoplatform/sudo-di-cloud-agent-example-js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Example app to show how to integrate with the Sudo DI Cloud Agent SDK",
   "author": "Anonyome Labs, Inc.",
   "license": "Apache-2.0",
