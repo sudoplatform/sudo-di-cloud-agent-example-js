@@ -47,7 +47,7 @@ export function initRouter(env: Environment, cloudAgent: CloudAgent): Router {
   );
 
   // use a default route for requests which cannot be served by another route
-  router.get('*', initDefaultRoute(env));
+  router.get('/', initDefaultRoute(env));
 
   return router;
 }
@@ -57,7 +57,7 @@ export function initRouter(env: Environment, cloudAgent: CloudAgent): Router {
  */
 function initDefaultRoute(env: Environment) {
   return (request: Request, response: Response) => {
-    env.staticContentRootDirectory
+    return env.staticContentRootDirectory
       ? response.sendFile(resolve(...env.staticContentRootDirectory.split(pathSep), 'index.html'))
       : response.sendStatus(404);
   };

@@ -26,7 +26,7 @@ import fetch from 'node-fetch';
 export default class CloudAgent {
   private readonly configuration?: Configuration;
 
-  constructor(adminApiEndpoint: string, adminApiKey: string) {
+  constructor(adminApiEndpoint: string, adminApiKey?: string) {
     /**
      * Set the Cloud Agent Service's admin API endpoint, and set the x-api-key header
      * which will be used to authenticate all requests to the API.
@@ -34,7 +34,7 @@ export default class CloudAgent {
     this.configuration = new Configuration({
       basePath: adminApiEndpoint,
       fetchApi: fetch,
-      headers: { 'x-api-key': adminApiKey },
+      headers: adminApiKey ? { 'x-api-key': adminApiKey } : undefined,
     });
   }
 
@@ -574,7 +574,7 @@ export default class CloudAgent {
 
     // for the purposes of the example flow, extract and return the two attributes we are interested in
     const credentialSubject =
-      (credentialExchange.by_format?.cred_offer as CredOffer)?.ld_proof?.credential?.credentialSubject ?? {};
+      (credentialExchange.by_format?.cred_offer as unknown as CredOffer)?.ld_proof?.credential?.credentialSubject ?? {};
     const givenName = credentialSubject?.['givenName'] as string | undefined;
     const familyName = credentialSubject?.['familyName'] as string | undefined;
 
@@ -829,6 +829,7 @@ export default class CloudAgent {
         presentation_request: {
           dif: {
             options: {
+              domain: randomUUID(),
               challenge: randomUUID(),
             },
             presentation_definition: {
@@ -1089,7 +1090,7 @@ export default class CloudAgent {
       result.state === V20PresExRecordStateEnum.Done
     ) {
       const revealedAttributes =
-        (result.by_format?.pres as Pres)?.dif?.verifiableCredential[0]?.credentialSubject ?? {};
+        (result.by_format?.pres as unknown as Pres)?.dif?.verifiableCredential[0]?.credentialSubject ?? {};
       response.revealedAttributes = {
         givenName: revealedAttributes['givenName'] as string,
         familyName: revealedAttributes['familyName'] as string,

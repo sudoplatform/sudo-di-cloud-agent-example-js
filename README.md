@@ -44,7 +44,7 @@ To make this point clear:
 Install dependencies:
 
 ```bash
-yarn install-deps
+yarn && yarn install-deps
 ```
 
 Build:

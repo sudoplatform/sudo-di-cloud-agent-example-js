@@ -6,33 +6,31 @@
   "license": "Apache-2.0",
   "type": "module",
   "dependencies": {
-    "@sudoplatform-labs/sudo-di-cloud-agent": "^0.6.7",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
+    "@sudoplatform-labs/sudo-di-cloud-agent": "^0.12.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
     "node-fetch": "^3.3.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^18.11.18",
-    "@types/node-fetch": "^2.6.2",
-    "@typescript-eslint/eslint-plugin": "^5.50.0",
-    "@typescript-eslint/parser": "^5.50.0",
-    "eslint": "^8.33.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "prettier": "^2.8.3",
-    "typescript": "^4.9.5"
-  },
-  "resolutions": {
-    "node-fetch": "^2.6.7"
+    "@types/express": "^5.0.3",
+    "@types/node": "^20.11.16",
+    "@types/node-fetch": "^3.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.44.0",
+    "@typescript-eslint/parser": "^8.44.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.2"
   },
   "scripts": {
     "build": "yarn tsc",
     "start": "cd build/src && node server.js",
-    "verify": "yarn audit",
+    "verify": "yarn npm audit",
     "lint": "yarn eslint src --ext .ts",
     "lint:fix": "yarn eslint src --ext .ts --fix",
     "clean": "rm -rf build",
-    "clean:all": "yarn clean && rm -rf node_modules && rm -f yarn-error.log"
-  }
+    "clean:all": "yarn clean && rm -rf node_modules && rm -f yarn-error.log && rm -rf .yarn"
+  },
+  "packageManager": "yarn@4.9.4"
 }

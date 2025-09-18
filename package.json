@@ -13,5 +13,6 @@
     "lint:fix": "cd frontend && yarn lint:fix && cd ../backend && yarn lint:fix",
     "clean": "cd frontend && yarn clean && cd ../backend && yarn clean",
     "clean:all": "cd frontend && yarn clean:all && cd ../backend && yarn clean:all"
-  }
+  },
+  "packageManager": "yarn@4.9.4"
 }

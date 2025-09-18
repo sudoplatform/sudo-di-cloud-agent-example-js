@@ -150,7 +150,8 @@ export const IssueCredential = (props: Props): ReactElement => {
 
   /**
    * Poll the backend, waiting for the holder's wallet app to accept the credential and waiting for the
-   * credential exchange state to change to "done". Also, for visibility, keep the value of
+   * credential exchange state to change to "credential-issued" or "done". Note that agents are not required
+   * to respond with an "ack", although it is preferable that they do. Also, for visibility, keep the value of
    * "Credential Exchange State" up-to-date in the UI.
    */
   const pollCredentialExchangeState = async () => {
@@ -159,13 +160,26 @@ export const IssueCredential = (props: Props): ReactElement => {
 
     while (!isAccepted) {
       responseData = await HttpToBackend.getW3cCredentialExchangeState(credentialExchangeId);
-      isAccepted = responseData.state === 'done';
+      isAccepted = responseData.state === 'credential-issued' || responseData.state === 'done';
       setCredentialExchangeState(responseData.state);
       await sleep(1000);
     }
 
     setAcceptCredentialOfferStatus('Credential Issued');
     setStep(ExampleStep.Done);
+
+    /**
+     * The "Issue Credential" step of the example flow is done at this point. However, for visibility,
+     * continue polling the backend and update the exchange state in the UI until the final state
+     * is reached (i.e. "done").
+     */
+    let isAcked = false;
+    while (!isAcked) {
+      responseData = await HttpToBackend.getW3cCredentialExchangeState(credentialExchangeId);
+      isAcked = responseData.state === 'done';
+      setCredentialExchangeState(responseData.state);
+      await sleep(1000);
+    }
   };
 
   return (
